@@ -18,7 +18,6 @@ export const applyDiscount = (total, discountPercent) => {
   return total * (1 - discountPercent / 100);
 };
 
-// all
-// amount only - default
-// not string
-// not exist
+// Не забудь выполнить
+// задание 1. добавить 1 метод и пять тестов к нему
+// задание 3. добавить метод для проверки эмэйлов через TDD
