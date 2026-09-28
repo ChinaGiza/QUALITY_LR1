@@ -18,6 +18,25 @@ export const applyDiscount = (total, discountPercent) => {
   return total * (1 - discountPercent / 100);
 };
 
-// Не забудь выполнить
 // задание 1. добавить 1 метод и пять тестов к нему
-// задание 3. добавить метод для проверки эмэйлов через TDD
+export const formatCurrency = (amount, currency = 'USD') => {
+  if (typeof amount !== 'number' || Number.isNaN(amount)) {
+    throw new Error('Amount must be a valid number');
+  }
+
+  const symbols = {
+    USD: '$',
+    EUR: '€',
+    RUB: '₽',
+    GBP: '£',
+    JPY: '¥',
+  };
+
+  if (!symbols[currency]) {
+    throw new Error(`Unsupported currency: ${currency}`);
+  }
+
+  const formatted = amount.toFixed(2);
+  return `${symbols[currency]}${formatted}`;
+};
+
