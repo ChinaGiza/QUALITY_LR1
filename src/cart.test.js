@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { calculateTotal, applyDiscount, formatCurrency } from "./cart.js";
+import { calculateTotal, applyDiscount, formatCurrency, validateEmail } from "./cart.js";
 
 describe("calculateTotal", () => {
   it("should return 0 for empty array", () => {
@@ -67,3 +67,39 @@ describe('formatCurrency', () => {
   });
 });
 
+// задание 3. добавить метод для проверки эмэйлов через TDD
+describe('validateEmail (TDD — тесты написаны первыми)', () => {
+  it('should return true for a valid email', () => {
+    expect(validateEmail('user@example.com')).toBe(true);
+  });
+
+  it('should return true for email with dots and plus', () => {
+    expect(validateEmail('first.last+tag@domain.co')).toBe(true);
+  });
+
+  it('should return false for email without @', () => {
+    expect(validateEmail('userexample.com')).toBe(false);
+  });
+
+  it('should return false for email without domain', () => {
+    expect(validateEmail('user@')).toBe(false);
+  });
+
+  it('should return false for email without local part', () => {
+    expect(validateEmail('@domain.com')).toBe(false);
+  });
+
+  it('should return false for empty string', () => {
+    expect(validateEmail('')).toBe(false);
+  });
+
+  it('should return false for non-string input', () => {
+    expect(validateEmail(null)).toBe(false);
+    expect(validateEmail(undefined)).toBe(false);
+    expect(validateEmail(12345)).toBe(false);
+  });
+
+  it('should return false for email with spaces', () => {
+    expect(validateEmail('user @example.com')).toBe(false);
+  });
+});

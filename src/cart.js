@@ -40,3 +40,12 @@ export const formatCurrency = (amount, currency = 'USD') => {
   return `${symbols[currency]}${formatted}`;
 };
 
+// задание 3. добавить метод для проверки эмэйлов через TDD
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export const validateEmail = (email) => {
+  if (typeof email !== 'string' || email.length === 0) {
+    return false;
+  }
+  return EMAIL_REGEX.test(email);
+};
